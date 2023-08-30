@@ -1,6 +1,7 @@
 package it.craftopoly.co_auth.utils;
 
 import com.google.gson.Gson;
+import org.bukkit.entity.Player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,5 +34,14 @@ public class Utils
             result.append(line);
         }
         return !result.toString().equals("");
+    }
+
+    public static void sendMessage(Player player, String message)
+    {
+        String[] subMessages = message.split("_");
+
+        for(String msg : subMessages)
+            player.sendMessage(msg.replace("_", ""));
+
     }
 }

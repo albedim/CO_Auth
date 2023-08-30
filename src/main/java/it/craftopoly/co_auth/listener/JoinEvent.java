@@ -2,16 +2,15 @@ package it.craftopoly.co_auth.listener;
 
 import it.craftopoly.co_auth.CO_Auth;
 import it.craftopoly.co_auth.utils.HttpCall;
-import it.craftopoly.co_auth.utils.HttpRequest;
-import it.craftopoly.co_auth.utils.Message;
 
 import it.craftopoly.co_auth.utils.Utils;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.*;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
 
@@ -29,21 +28,57 @@ public class JoinEvent implements Listener {
         {
             try {
                 if (Utils.isUsernamePremium(player.getName())) {
-                    player.sendMessage(Message.PREMIUM_AUTHENTICATED);
+                    player.sendMessage(CO_Auth.getInstance().getConfig().getString("messages.premium_authenticated"));
                     CO_Auth.guests.remove(player.getUniqueId());
                 }else{
-                    player.sendMessage(Message.LOGIN.replace("{username}", player.getName()));
+                    new BukkitRunnable() {
+                        @Override
+                        public void run()
+                        {
+                            if(!CO_Auth.guests.contains(player.getUniqueId()))
+                                return;
+                            player.sendMessage("§8-------------------------------------");
+                            Utils.sendMessage(
+                                    player,
+                                    CO_Auth.getInstance().getConfig().getString("messages.login")
+                                            .replace("{username}", player.getName())
+                            );
+                            player.sendMessage("§8-------------------------------------");
+                            player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 300, 300);
+                        }
+                    }.runTaskTimer(CO_Auth.getInstance(), 0, 740);
                 }
             } catch (IOException exc) {
                 player.kickPlayer(exc.getMessage());
             }
         }else{
-            player.sendMessage(Message.AUTHENTICATE.replace("{username}", player.getName()));
+            new BukkitRunnable() {
+                @Override
+                public void run()
+                {
+                    if(!CO_Auth.guests.contains(player.getUniqueId()))
+                        return;
+
+                    player.sendMessage("§8-------------------------------------");
+                    Utils.sendMessage(
+                            player,
+                            CO_Auth.getInstance().getConfig().getString("messages.authenticate")
+                                    .replace("{username}", player.getName())
+                    );player.sendMessage("§8-------------------------------------");
+                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 300, 300);
+                }
+            }.runTaskTimer(CO_Auth.getInstance(), 0, 740);
         }
     }
 
     @EventHandler
     public void onMove(PlayerMoveEvent e)
+    {
+        e.setCancelled(CO_Auth.guests.contains(e.getPlayer().getUniqueId()));
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onInteract(PlayerInteractEvent e)
     {
         e.setCancelled(CO_Auth.guests.contains(e.getPlayer().getUniqueId()));
     }

@@ -1,5 +1,6 @@
 package it.craftopoly.co_auth.utils;
 
+import it.craftopoly.co_auth.CO_Auth;
 import it.craftopoly.co_auth.schema.UserAuth;
 
 public class HttpCall
@@ -16,20 +17,20 @@ public class HttpCall
     {
         Response response = HttpRequest.post("/users/create", new UserAuth(username, password));
         if(response == null)
-            return Message.AUTHENTICATION_ERROR;
+            return CO_Auth.getInstance().getConfig().getString("messages.authentication_error");
         if(response.getCode() != 200)
-            return Message.AUTHENTICATION_ERROR;
-        return Message.AUTHENTICATED;
+            return CO_Auth.getInstance().getConfig().getString("messages.authentication_error");
+        return CO_Auth.getInstance().getConfig().getString("messages.authenticated");
     }
 
     public static String login(String username, String password)
     {
         Response response = HttpRequest.post("/users/signin", new UserAuth(username, password));
         if(response == null)
-            return Message.AUTHENTICATION_ERROR;
+            return CO_Auth.getInstance().getConfig().getString("messages.authentication_error");
         if(response.getCode() != 200)
-            return Message.AUTHENTICATION_FAILED;
-        return Message.AUTHENTICATED;
+            return CO_Auth.getInstance().getConfig().getString("messages.authentication_failed");
+        return CO_Auth.getInstance().getConfig().getString("messages.authenticated");
     }
 }
 

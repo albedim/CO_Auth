@@ -2,7 +2,6 @@ package it.craftopoly.co_auth.executor;
 
 import it.craftopoly.co_auth.CO_Auth;
 import it.craftopoly.co_auth.utils.HttpCall;
-import it.craftopoly.co_auth.utils.Message;
 import it.craftopoly.co_auth.utils.Utils;
 
 import org.bukkit.command.Command;
@@ -32,7 +31,7 @@ public class LoginExecutor implements CommandExecutor
                     return false;
                 }
             }else{
-                player.sendMessage(Message.ALREADY_AUTHENTICATED);
+                player.sendMessage(CO_Auth.getInstance().getConfig().getString("messages.already_authenticated"));
             }
         return false;
     }
