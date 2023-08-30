@@ -64,7 +64,8 @@ public class JoinEvent implements Listener {
                             player,
                             CO_Auth.getInstance().getConfig().getString("messages.authenticate")
                                     .replace("{username}", player.getName())
-                    );player.sendMessage("§8-------------------------------------");
+                    );
+                    player.sendMessage("§8-------------------------------------");
                     player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 300, 300);
                 }
             }.runTaskTimer(CO_Auth.getInstance(), 0, 740);
