@@ -1,6 +1,10 @@
 package it.craftopoly.co_auth.utils;
 
 import com.google.gson.Gson;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 
 import java.io.BufferedReader;
@@ -42,6 +46,17 @@ public class Utils
 
         for(String msg : subMessages)
             player.sendMessage(msg.replace("_", ""));
+    }
 
+    public static TextComponent createInteractiveMessage(String hoverText, ClickEvent.Action action, String message, String command)
+    {
+        TextComponent button = new TextComponent(message);
+        if(hoverText != null){
+            BaseComponent[] hoverTextComponents = TextComponent.fromLegacyText(hoverText);
+            button.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverTextComponents));
+        }
+
+        button.setClickEvent(new ClickEvent(action, command));
+        return button;
     }
 }

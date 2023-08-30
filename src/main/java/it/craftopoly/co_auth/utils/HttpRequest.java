@@ -3,17 +3,14 @@ package it.craftopoly.co_auth.utils;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
-import java.util.Objects;
 
-public class HttpRequest
+class HttpRequest
 {
     private static final String BASE_URL = "http://localhost:5000/api/v1";
 
