@@ -1,13 +1,15 @@
 package it.craftopoly.co_auth.schema;
 
-public class UserAuth
+public class UserRegisterSchema
 {
     private String username;
     private String password;
+    private String uuid;
 
-    public UserAuth(String username, String password)
+    public UserRegisterSchema(String uuid, String username, String password)
     {
         this.username = username;
+        this.uuid = uuid;
         this.password = password;
     }
 }

@@ -19,7 +19,7 @@ public class RegisterExecutor implements CommandExecutor
             {
                 Player player = (Player) sender;
                 String password = args[0];
-                String response = HttpCall.create(player.getName(), password);
+                String response = HttpCall.create(player.getUniqueId().toString(), player.getName(), password);
 
                 if (Utils.isSuccess(response))
                     CO_Auth.guests.remove(player.getUniqueId());

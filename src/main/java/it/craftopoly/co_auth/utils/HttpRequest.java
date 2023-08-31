@@ -1,6 +1,7 @@
 package it.craftopoly.co_auth.utils;
 
 import com.google.gson.Gson;
+import it.craftopoly.co_auth.CO_Auth;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 class HttpRequest
 {
-    private static final String BASE_URL = "http://localhost:5000/api/v1";
+    private static final String BASE_URL = CO_Auth.getInstance().getConfig().getString("settings.api_url");
 
     public static Response get(String endpoint)
     {
