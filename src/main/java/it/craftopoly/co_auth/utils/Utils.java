@@ -59,4 +59,9 @@ public class Utils
         button.setClickEvent(new ClickEvent(action, command));
         return button;
     }
+
+    public static TextComponent createEmptyInteractiveMessage(String message)
+    {
+        return new TextComponent(message);
+    }
 }

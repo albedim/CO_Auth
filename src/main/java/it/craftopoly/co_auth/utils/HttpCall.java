@@ -1,5 +1,6 @@
 package it.craftopoly.co_auth.utils;
 
+import com.google.gson.JsonObject;
 import it.craftopoly.co_auth.CO_Auth;
 import it.craftopoly.co_auth.schema.UserRegisterSchema;
 import it.craftopoly.co_auth.schema.UserSigninSchema;
@@ -8,28 +9,39 @@ public class HttpCall
 {
     public static Boolean exists(String username)
     {
-        Response response = HttpRequest.get("/users/" + username + "/exists");
-        if(response == null)
-            return false;
-        return Boolean.parseBoolean(response.getParam().toString());
+        JsonObject response = HttpUtils.get(
+                "/users/" + username + "/exists",
+                null,
+                JsonObject.class
+        ).getAsJsonObject();
+
+        return response.get("param").getAsBoolean();
     }
 
     public static String create(String uuid, String username, String password)
     {
-        Response response = HttpRequest.post("/users/create", new UserRegisterSchema(uuid, username, password));
-        if(response == null)
-            return CO_Auth.getInstance().getConfig().getString("messages.authentication_error");
-        if(response.getCode() != 200)
+        JsonObject response = HttpUtils.post(
+                "/users/create",
+                null,
+                new UserRegisterSchema(uuid, username, password),
+                JsonObject.class
+        ).getAsJsonObject();
+
+        if(response.get("code").getAsInt() != 200)
             return CO_Auth.getInstance().getConfig().getString("messages.authentication_error");
         return CO_Auth.getInstance().getConfig().getString("messages.authenticated");
     }
 
     public static String login(String username, String password)
     {
-        Response response = HttpRequest.post("/users/signin", new UserSigninSchema(username, password));
-        if(response == null)
-            return CO_Auth.getInstance().getConfig().getString("messages.authentication_error");
-        if(response.getCode() != 200)
+        JsonObject response = HttpUtils.post(
+                "/users/signin",
+                null,
+                new UserSigninSchema(username, password),
+                JsonObject.class
+        ).getAsJsonObject();
+
+        if(response.get("code").getAsInt() != 200)
             return CO_Auth.getInstance().getConfig().getString("messages.authentication_failed");
         return CO_Auth.getInstance().getConfig().getString("messages.authenticated");
     }
