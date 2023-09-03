@@ -12,7 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.IOException;
+
 
 public class JoinEvent implements Listener {
 
@@ -38,6 +38,7 @@ public class JoinEvent implements Listener {
                     {
                         if(!CO_Auth.guests.contains(player.getUniqueId()))
                             return;
+
                         player.sendMessage("§8-------------------------------------");
                         Utils.sendMessage(
                                 player,
