@@ -22,7 +22,8 @@ public class JoinEvent implements Listener {
         e.setJoinMessage(null);
         Player player = e.getPlayer();
 
-        CO_Auth.guests.add(player.getUniqueId());
+        if(!CO_Auth.guests.contains(player.getUniqueId()))
+            CO_Auth.guests.add(player.getUniqueId());
         Boolean exists = HttpCall.exists(player.getName());
 
 

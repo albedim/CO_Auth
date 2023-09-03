@@ -6,8 +6,8 @@ messages:
   already_authenticated: §cSei già stato autenticato.
   authentication_failed: §cPassword sbagliata, riprova.
 
-  authenticate: §a§lAutenticazione__§8▪ §7Benvenuto §a{username}§7, Crea il tuo §aID§7 personale_  §7per iniziare a giocare__  §7⇨ /register <password>_"
-  login: §a§lAutenticazione__§8▪ §7Bentornato §a{username}§7, Inserisci la tua password_  §7per iniziare a giocare__  §7⇨ /login <password>_"
+  authenticate: §a§lAutenticazione__§8▪ §7Benvenuto §a{username}§7, Crea il tuo §aID§7 personale_  §7per iniziare a giocare__  §7⇨ /register <password>_
+  login: §a§lAutenticazione__§8▪ §7Bentornato §a{username}§7, Inserisci la tua password_  §7per iniziare a giocare__  §7⇨ /login <password>_
 
 settings:
   api_url: http://localhost:5000/api/v1
