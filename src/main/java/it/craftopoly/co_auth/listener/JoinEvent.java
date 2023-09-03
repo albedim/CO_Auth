@@ -19,7 +19,6 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e)
     {
-        e.setJoinMessage(null);
         Player player = e.getPlayer();
 
         if(!CO_Auth.guests.contains(player.getUniqueId()))

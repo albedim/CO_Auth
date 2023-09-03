@@ -17,11 +17,9 @@ public class QuitEvent implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e)
     {
-        e.setQuitMessage(null);
         Player player = e.getPlayer();
 
         CO_Auth.guests.remove(player.getUniqueId());
-
     }
 
 }
