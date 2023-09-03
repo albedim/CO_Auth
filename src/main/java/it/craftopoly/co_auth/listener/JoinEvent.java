@@ -25,32 +25,29 @@ public class JoinEvent implements Listener {
         CO_Auth.guests.add(player.getUniqueId());
         Boolean exists = HttpCall.exists(player.getName());
 
+
         if(exists)
         {
-            try {
-                if (Utils.isUsernamePremium(player.getName())) {
-                    player.sendMessage(CO_Auth.getInstance().getConfig().getString("messages.premium_authenticated"));
-                    CO_Auth.guests.remove(player.getUniqueId());
-                }else{
-                    new BukkitRunnable() {
-                        @Override
-                        public void run()
-                        {
-                            if(!CO_Auth.guests.contains(player.getUniqueId()))
-                                return;
-                            player.sendMessage("§8-------------------------------------");
-                            Utils.sendMessage(
-                                    player,
-                                    CO_Auth.getInstance().getConfig().getString("messages.login")
-                                            .replace("{username}", player.getName())
-                            );
-                            player.sendMessage("§8-------------------------------------");
-                            player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 300, 300);
-                        }
-                    }.runTaskTimer(CO_Auth.getInstance(), 0, 740);
-                }
-            } catch (IOException exc) {
-                player.kickPlayer(exc.getMessage());
+            if (Utils.isUsernamePremium(player.getName())) {
+                player.sendMessage(CO_Auth.getInstance().getConfig().getString("messages.premium_authenticated"));
+                CO_Auth.guests.remove(player.getUniqueId());
+            }else{
+                new BukkitRunnable() {
+                    @Override
+                    public void run()
+                    {
+                        if(!CO_Auth.guests.contains(player.getUniqueId()))
+                            return;
+                        player.sendMessage("§8-------------------------------------");
+                        Utils.sendMessage(
+                                player,
+                                CO_Auth.getInstance().getConfig().getString("messages.login")
+                                        .replace("{username}", player.getName())
+                        );
+                        player.sendMessage("§8-------------------------------------");
+                        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 300, 300);
+                    }
+                }.runTaskTimer(CO_Auth.getInstance(), 0, 740);
             }
         }else{
             new BukkitRunnable() {
