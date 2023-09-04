@@ -21,7 +21,7 @@ public class LoginEvent implements Listener {
     {
         Player player = e.getPlayer();
         JsonObject ban = HttpCall.getBan(player.getName());
-
+        System.out.println(ban);
         if(ban != null) {
             e.setKickMessage(getBanMessage(ban));
             e.setResult(PlayerLoginEvent.Result.KICK_BANNED);
@@ -37,7 +37,7 @@ public class LoginEvent implements Listener {
                 " " + ban.get("banned_on").getAsString().split(" ")[1].split(":")[0] + ":" +
                 ban.get("banned_on").getAsString().split(" ")[1].split(":")[1] + "\n" +
                 "§8 ▪ §7Fine del ban: §a"+ (
-                        ban.get("ends_on") != null ? (
+                        !ban.get("ends_on").getAsString().equals("perma") ? (
                                 DateUtils.fixDate(ban.get("ends_on").getAsString().split(" ")[0]) +
                                 " " + ban.get("ends_on").getAsString().split(" ")[1].split(":")[0] + ":" +
                                 ban.get("ends_on").getAsString().split(" ")[1].split(":")[1]

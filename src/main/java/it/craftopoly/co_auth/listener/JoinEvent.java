@@ -40,8 +40,7 @@ public class JoinEvent implements Listener {
                             return;
 
                         player.sendMessage("§8-------------------------------------");
-                        Utils.sendMessage(
-                                player,
+                        player.sendMessage(
                                 CO_Auth.getInstance().getConfig().getString("messages.login")
                                         .replace("{username}", player.getName())
                         );
@@ -59,8 +58,7 @@ public class JoinEvent implements Listener {
                         return;
 
                     player.sendMessage("§8-------------------------------------");
-                    Utils.sendMessage(
-                            player,
+                    player.sendMessage(
                             CO_Auth.getInstance().getConfig().getString("messages.authenticate")
                                     .replace("{username}", player.getName())
                     );
