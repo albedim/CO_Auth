@@ -3,6 +3,7 @@ package it.craftopoly.co_auth;
 import it.craftopoly.co_auth.executor.LoginExecutor;
 import it.craftopoly.co_auth.executor.RegisterExecutor;
 import it.craftopoly.co_auth.listener.JoinEvent;
+import it.craftopoly.co_auth.listener.LoginEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,6 +23,7 @@ public final class CO_Auth extends JavaPlugin {
         getCommand("login").setExecutor(new LoginExecutor());
         getCommand("register").setExecutor(new RegisterExecutor());
         Bukkit.getPluginManager().registerEvents(new JoinEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new LoginEvent(), this);
     }
 
     @Override

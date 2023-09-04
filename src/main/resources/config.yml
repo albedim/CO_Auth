@@ -1,13 +1,15 @@
 
 messages:
-  authenticated: §aAutenticazione avvenuta con successo.
-  premium_authenticated: §aAutenticazione automatica avvenuta con successo.
-  authentication_error: §cErrore durante l'autenticazione.
-  already_authenticated: §cSei già stato autenticato.
-  authentication_failed: §cPassword sbagliata, riprova.
+  authenticated: "§aAutenticazione avvenuta con successo."
+  website: "https://craftopoly.it"
+  discord: "https://discord.gg.ccccccc"
+  premium_authenticated: "§aAutenticazione automatica avvenuta con successo."
+  authentication_error: "§cErrore durante l'autenticazione."
+  already_authenticated: "§cSei già stato autenticato."
+  authentication_failed: "§cPassword sbagliata, riprova."
 
-  authenticate: §a§lAutenticazione__§8▪ §7Benvenuto §a{username}§7, Crea il tuo §aID§7 personale_  §7per iniziare a giocare__  §7⇨ /register <password>_
-  login: §a§lAutenticazione__§8▪ §7Bentornato §a{username}§7, Inserisci la tua password_  §7per iniziare a giocare__  §7⇨ /login <password>_
+  authenticate: "§a§lAutenticazione\n\n§8▪ §7Benvenuto §a{username}§7, Crea il tuo §aID§7 personale\n  §7per iniziare a giocare\n\n  §7⇨ /register <password>\n"
+  login: "§a§lAutenticazione\n\n§8▪ §7Bentornato §a{username}§7, Inserisci la tua password\n  §7per iniziare a giocare\n\n  §7⇨ /login <password>\n"
 
 settings:
   api_url: http://localhost:5000/api/v1

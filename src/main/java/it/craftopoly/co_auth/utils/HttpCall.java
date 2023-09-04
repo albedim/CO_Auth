@@ -18,6 +18,20 @@ public class HttpCall
         return response.get("param").getAsBoolean();
     }
 
+    public static JsonObject getBan(String username)
+    {
+        JsonObject response = HttpUtils.get(
+                "/bans/user/" + username,
+                null,
+                JsonObject.class
+        ).getAsJsonObject();
+
+        if(response.get("code").getAsInt() != 200)
+           return null;
+
+        return response.get("param").getAsJsonObject();
+    }
+
     public static String create(String uuid, String username, String password)
     {
         JsonObject response = HttpUtils.post(

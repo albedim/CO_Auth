@@ -23,8 +23,8 @@ public class JoinEvent implements Listener {
 
         if(!CO_Auth.guests.contains(player.getUniqueId()))
             CO_Auth.guests.add(player.getUniqueId());
-        Boolean exists = HttpCall.exists(player.getName());
 
+        Boolean exists = HttpCall.exists(player.getName());
 
         if(exists)
         {
