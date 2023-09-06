@@ -8,18 +8,18 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 
-public class ConnectTelegramExecutor implements CommandExecutor
+public class DisconnectTelegramExecutor implements CommandExecutor
 {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
         Player player = (Player) sender;
 
-        if (cmd.getName().equals("connect-telegram"))
+        if (cmd.getName().equals("disconnect-telegram"))
             if(!CO_Auth.guests.contains(player.getUniqueId()))
             {
-                String code = HttpCall.connectTelegram(player.getUniqueId().toString());
-                player.sendMessage(code);
+                String res = HttpCall.disconnectTelegram(player.getUniqueId().toString());
+                player.sendMessage(res);
             }else{
                 player.sendMessage(CO_Auth.getInstance().getConfig().getString("messages.no_enough_permissions"));
             }

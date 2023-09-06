@@ -19,7 +19,7 @@ public class HttpCall
         return response.get("param").getAsBoolean();
     }
 
-    public static String generateTelegramCode(String uuid)
+    public static String connectTelegram(String uuid)
     {
         JsonObject response = HttpUtils.put(
                 "/users/telegram/generate",
@@ -38,6 +38,26 @@ public class HttpCall
 
         return CO_Auth.getInstance().getConfig().getString("messages.telegram_connect")
                 .replace("{code}", response.get("param").getAsString());
+    }
+
+    public static String disconnectTelegram(String uuid)
+    {
+        JsonObject response = HttpUtils.put(
+                "/users/telegram/disconnect",
+                uuid,
+                null,
+                JsonObject.class
+        ).getAsJsonObject();
+
+        if(response.get("code").getAsInt() != 200 &&
+                response.get("code").getAsInt() != 404) {
+            return CO_Auth.getInstance().getConfig().getString("messages.telegram_error");
+        }
+
+        if(response.get("code").getAsInt() == 404)
+            return CO_Auth.getInstance().getConfig().getString("messages.telegram_not_connected");
+
+        return CO_Auth.getInstance().getConfig().getString("messages.telegram_disconnected");
     }
 
     public static JsonObject getBan(String username)
