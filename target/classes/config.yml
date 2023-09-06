@@ -5,6 +5,9 @@ messages:
   discord: "https://discord.gg.ccccccc"
   premium_authenticated: "§aAutenticazione automatica avvenuta con successo."
   authentication_error: "§cErrore durante l'autenticazione."
+  telegram_error: "§cErrore durante la generazione del tuo codice."
+  telegram_already_connected: "§a§lTelegram\n\n §8▪ §7Il tuo Craftopoly ID è gia collegato ad un account telegram, sei sicuro di volerlo disconnettere?"
+  telegram_connect: "§a§lTelegram\n\n §8▪ §7Ci sei quasi. Vai su telegram e avvia il bot §a@CraftopolyTicketsBOT. §7Segui le istruzioni e inviagli questo codice per connettere il tuo account: §a{code}."
   already_authenticated: "§cSei già stato autenticato."
   authentication_failed: "§cPassword sbagliata, riprova."
 

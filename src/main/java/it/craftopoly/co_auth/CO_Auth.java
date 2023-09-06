@@ -1,5 +1,6 @@
 package it.craftopoly.co_auth;
 
+import it.craftopoly.co_auth.executor.ConnectTelegramExecutor;
 import it.craftopoly.co_auth.executor.LoginExecutor;
 import it.craftopoly.co_auth.executor.RegisterExecutor;
 import it.craftopoly.co_auth.listener.JoinEvent;
@@ -21,6 +22,7 @@ public final class CO_Auth extends JavaPlugin {
         plugin = this;
         saveDefaultConfig();
         getCommand("login").setExecutor(new LoginExecutor());
+        getCommand("connect-telegram").setExecutor(new ConnectTelegramExecutor());
         getCommand("register").setExecutor(new RegisterExecutor());
         Bukkit.getPluginManager().registerEvents(new JoinEvent(), this);
         Bukkit.getPluginManager().registerEvents(new LoginEvent(), this);

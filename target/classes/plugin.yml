@@ -7,3 +7,7 @@ commands:
     aliases: reg
   login:
     aliases: []
+  connect-telegram:
+    aliases: [ ]
+  disconnect-telegram:
+    aliases: [ ]

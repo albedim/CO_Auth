@@ -20,6 +20,7 @@ public class LoginEvent implements Listener {
     public void onLogin(PlayerLoginEvent e)
     {
         Player player = e.getPlayer();
+        HttpCall.sync(player.getUniqueId().toString(), player.getName());
         JsonObject ban = HttpCall.getBan(player.getName());
         System.out.println(ban);
         if(ban != null) {
